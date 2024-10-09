@@ -1,0 +1,12 @@
+{
+    "name": "ps-git",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@pulumi/github": "^4.8.1",
+        "@pulumi/pulumi": "^3.113.0"
+    }
+}

@@ -1,0 +1,7 @@
+config:
+  github:owner: bonanaaaaaa
+  github:token:
+    secure: AAABAHBDM4cGw9EBv+k86Kes6yVIA0zFtbwThx8jFHPy8W/HcAXN6eX729EuooVlLf+TVbxvXCtvmXsrjoqJuH+0nRvn2sbd
+  pulumi:template: github-typescript
+  demo:repositoryDescription: A demo repository
+  demo:repositoryName: demo-monorepo
