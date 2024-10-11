@@ -1,0 +1,20 @@
+name: Check do not merge
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+      - labeled
+      - unlabeled
+
+jobs:
+  ok-to-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./packages/ci/do-not-merge
+        with:
+          labels: ${{ github.event.pull_request.labels.*.name }}
