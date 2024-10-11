@@ -6,13 +6,15 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  modules/pulumi-git:
     dependencies:
       '@pulumi/github':
-        specifier: ^4.8.1
-        version: 4.17.0(typescript@5.6.3)
+        specifier: ^6.3.1
+        version: 6.3.1(typescript@5.6.3)
       '@pulumi/pulumi':
-        specifier: ^3.113.0
+        specifier: ^3.136.1
         version: 3.136.1(typescript@5.6.3)
     devDependencies:
       '@types/node':
@@ -24,8 +26,8 @@ importers:
 
 packages:
 
-  '@grpc/grpc-js@1.12.1':
-    resolution: {integrity: sha512-VYrLinJNeW3idIZHTy7BsVL7bsPF9+l89WDYTDV8o1QYJzkf3BSoPXdfaz4c8DyeY12LGSaS8m8BgbT8W66h6Q==}
+  '@grpc/grpc-js@1.12.2':
+    resolution: {integrity: sha512-bgxdZmgTrJZX50OjyVwz3+mNEnCTNkh3cIqGPWVNeW9jX6bn1ZkU80uPd+67/ZpIJIjRQ9qaHCjhavyoWYxumg==}
     engines: {node: '>=12.10.0'}
 
   '@grpc/proto-loader@0.7.13':
@@ -215,8 +217,8 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  '@pulumi/github@4.17.0':
-    resolution: {integrity: sha512-znl8MhArmDW1V0Ud3CWAORbTPzEgesKvxOxHMv+0UIeFWx8sGkWwFRNyRzWCUnxx/FxGEh9EzQ71pWqm4lvWTQ==}
+  '@pulumi/github@6.3.1':
+    resolution: {integrity: sha512-TI0Ts4pP70DBSadeRQ71+7JLm0lTRrE6qcHgM3L+SOhzL+C231HHe9mLf/ubM57mbTTc0hAoGy1hNjIc2gbmFw==}
 
   '@pulumi/pulumi@3.136.1':
     resolution: {integrity: sha512-bO+AVYKyf4dFDVSbBRoCiwAVE0JhugwAEv5FmWit+VHE3f9eoy1qrw7t5DmGmAiL2cGCwTpvVEIf4y1N7360ZA==}
@@ -1095,7 +1097,7 @@ packages:
 
 snapshots:
 
-  '@grpc/grpc-js@1.12.1':
+  '@grpc/grpc-js@1.12.2':
     dependencies:
       '@grpc/proto-loader': 0.7.13
       '@js-sdsl/ordered-map': 4.4.2
@@ -1358,7 +1360,7 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@pulumi/github@4.17.0(typescript@5.6.3)':
+  '@pulumi/github@6.3.1(typescript@5.6.3)':
     dependencies:
       '@pulumi/pulumi': 3.136.1(typescript@5.6.3)
     transitivePeerDependencies:
@@ -1369,7 +1371,7 @@ snapshots:
 
   '@pulumi/pulumi@3.136.1(typescript@5.6.3)':
     dependencies:
-      '@grpc/grpc-js': 1.12.1
+      '@grpc/grpc-js': 1.12.2
       '@logdna/tail-file': 2.2.0
       '@npmcli/arborist': 7.5.4
       '@opentelemetry/api': 1.9.0
