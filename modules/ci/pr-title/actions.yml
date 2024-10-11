@@ -1,0 +1,17 @@
+name: "Check PR title"
+
+using: "composite"
+
+inputs:
+  labels:
+    description: "PR title"
+    required: true
+
+steps:
+  - name: Check PR title align with convention commit
+    shell: bash
+    run: |
+      if [[ ! ${{ inputs.labels }} =~ ^[a-z0-9]+(\([a-z0-9]+\))?:\ .+ ]]; then
+        echo "PR title must align with convention commit"
+        exit 1
+      fi
