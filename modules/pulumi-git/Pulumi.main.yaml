@@ -5,3 +5,5 @@ config:
   pulumi:template: github-typescript
   demo:repositoryDescription: A demo repository
   demo:repositoryName: demo-monorepo
+  demo2:repositoryDescription: A demo2 repository
+  demo2:repositoryName: demo2-monorepo
