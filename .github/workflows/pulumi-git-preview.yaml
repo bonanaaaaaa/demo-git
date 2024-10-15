@@ -1,0 +1,19 @@
+name: Pulumi
+on:
+  push:
+    branches:
+      - main
+jobs:
+  up:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pulumi/actions@v6
+        with:
+          command: preview
+          stack-name: bonanaaaaaa/ps-git
+          work-dir: ./modules/pulumi-git
+          comment-on-pr: true
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
