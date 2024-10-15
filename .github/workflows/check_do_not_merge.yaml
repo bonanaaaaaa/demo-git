@@ -11,7 +11,7 @@ on:
       - unlabeled
 
 jobs:
-  ok-to-merge:
+  check-do-not-merge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

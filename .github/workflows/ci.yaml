@@ -7,7 +7,7 @@ env:
   NODE_VERSION: 18
 
 jobs:
-  sync_dev:
+  ci:
     runs-on: ubuntu-latest
 
     steps:

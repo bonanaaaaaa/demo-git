@@ -1,12 +1,14 @@
-name: Pulumi Git Preview
+name: Pulumi Git Up
 on:
-  pull_request:
+  push:
+    branches:
+      - main
 
 env:
   NODE_VERSION: 18
 
 jobs:
-  preview:
+  up:
     name: Preview
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +21,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - uses: pulumi/actions@v6
         with:
-          command: preview
+          command: up
           stack-name: main
           work-dir: ./modules/pulumi-git
           comment-on-pr: true
