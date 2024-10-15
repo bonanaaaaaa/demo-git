@@ -1,0 +1,41 @@
+name: template-repo-sync
+description: Sync template repository
+
+inputs:
+  github_token:
+    description: "GitHub token"
+    required: true
+  source_repo_path:
+    description: "Path to the source repository"
+    required: true
+  upstream_branch:
+    description: "Branch to sync from"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: set source repository
+      run: echo "SOURCE_REPOSITORY=bonanaaaaaa/demo-template" >> $GITHUB_ENV
+      shell: bash
+    - name: set upstream branch
+      run: echo "UPSTREAM_BRANCH=main" >> $GITHUB_ENV
+      shell: bash
+
+    # Doc: https://github.com/marketplace/actions/checkout
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v4
+      if: github.repository != env.SOURCE_REPOSITORY
+      with:
+        token: ${{ github.token }}
+
+    # Doc: https://github.com/marketplace/actions/actions-template-sync
+    - name: actions-template-sync
+      uses: AndreasAugustin/actions-template-sync@v1.1.8
+      if: github.repository != env.SOURCE_REPOSITORY
+      with:
+        github_token: ${{ github.token }}
+        source_repo_path: env.SOURCE_REPOSITORY
+        upstream_branch: env.UPSTREAM_BRANCH
+        pr_title: "chore: upstream template update"
+        pr_commit_msg: "chore(template): upstream template update"
