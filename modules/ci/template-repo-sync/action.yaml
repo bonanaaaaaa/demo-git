@@ -1,17 +1,6 @@
 name: template-repo-sync
 description: Sync template repository
 
-inputs:
-  github_token:
-    description: "GitHub token"
-    required: true
-  source_repo_path:
-    description: "Path to the source repository"
-    required: true
-  upstream_branch:
-    description: "Branch to sync from"
-    required: true
-
 runs:
   using: "composite"
   steps:
@@ -27,14 +16,14 @@ runs:
       uses: actions/checkout@v4
       if: github.repository != env.SOURCE_REPOSITORY
       with:
-        token: ${{ github.token }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # Doc: https://github.com/marketplace/actions/actions-template-sync
     - name: actions-template-sync
       uses: AndreasAugustin/actions-template-sync@v1.1.8
       if: github.repository != env.SOURCE_REPOSITORY
       with:
-        github_token: ${{ github.token }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         source_repo_path: env.SOURCE_REPOSITORY
         upstream_branch: env.UPSTREAM_BRANCH
         pr_title: "chore: upstream template update"
