@@ -9,7 +9,7 @@ const demoResource = new PsGitHubProvider(demo.repositoryName, {
   },
 });
 
-const demo2Resource = new PsGitHubProvider(demo.repositoryName, {
+const demo2Resource = new PsGitHubProvider(demo2.repositoryName, {
   repository: {
     name: demo2.repositoryName,
     description: demo2.repositoryDescription,
