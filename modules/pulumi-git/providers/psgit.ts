@@ -10,7 +10,7 @@ type GitHubArgs = {
 };
 
 const mainBranchName = "main";
-const devBranchName = "dev";
+const devBranchName = "develop";
 
 export class PsGitHubProvider extends ComponentResource {
   repositoryName: string;
@@ -108,6 +108,7 @@ export class PsGitHubProvider extends ComponentResource {
       {
         repository: this.repository.name,
         branch: branchName,
+        sourceBranch: mainBranchName,
       },
       { parent: this.repository }
     );
