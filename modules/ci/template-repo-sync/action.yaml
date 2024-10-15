@@ -16,14 +16,14 @@ runs:
       uses: actions/checkout@v4
       if: github.repository != env.SOURCE_REPOSITORY
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TEMPLATE_REPO_SYNC_GITHUB_PAT }}
 
     # Doc: https://github.com/marketplace/actions/actions-template-sync
     - name: actions-template-sync
       uses: AndreasAugustin/actions-template-sync@v1.1.8
       if: github.repository != env.SOURCE_REPOSITORY
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.TEMPLATE_REPO_SYNC_GITHUB_PAT }}
         source_repo_path: env.SOURCE_REPOSITORY
         upstream_branch: env.UPSTREAM_BRANCH
         pr_title: "chore: upstream template update"
