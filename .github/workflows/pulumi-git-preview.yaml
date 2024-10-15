@@ -7,7 +7,7 @@ env:
 
 jobs:
   preview:
-    name: Preview
+    name: preview
     runs-on: ubuntu-latest
     steps:
       - name: git checkout
