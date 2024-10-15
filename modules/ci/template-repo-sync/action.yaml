@@ -29,7 +29,7 @@ runs:
       if: github.repository != env.SOURCE_REPOSITORY
       with:
         github_token: ${{ inputs.github_token }}
-        source_repo_path: env.SOURCE_REPOSITORY
-        upstream_branch: env.UPSTREAM_BRANCH
+        source_repo_path: ${{ env.SOURCE_REPOSITORY }}
+        upstream_branch: ${{ env.UPSTREAM_BRANCH }}
         pr_title: "chore: upstream template update"
         pr_commit_msg: "chore(template): upstream template update"
