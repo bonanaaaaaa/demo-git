@@ -1,7 +1,7 @@
 name: Check PR title
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - reopened
@@ -9,10 +9,11 @@ on:
       - synchronize
 
 jobs:
-  ok-to-merge:
+  check-pr-title:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./packages/ci/pr-title
+      - name: Checking PR title
+        uses: ./modules/ci/pr-title
         with:
-          labels: ${{ github.event.pull_request.labels.*.name }}
+          pr-title: ${{ github.event.pull_request.title }}

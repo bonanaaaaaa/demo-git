@@ -1,0 +1,13 @@
+name: "Check PR title"
+description: "Check if the PR title align with convention commit"
+inputs:
+  pr-title:
+    description: "PR title"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Check PR title align with convention commit
+      shell: bash
+      run: |
+        ./modules/ci/pr-title/conventional-commit.sh "${{ inputs.pr-title }}"

@@ -8,5 +8,10 @@
   "dependencies": {
     "@pulumi/github": "^6.3.1",
     "@pulumi/pulumi": "^3.136.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

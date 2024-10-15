@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./packages/ci/do-not-merge
+      - run: echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+      - uses: ./modules/ci/do-not-merge
         with:
-          labels: ${{ github.event.pull_request.labels.*.name }}
+          labels: ${{ toJson(github.event.pull_request.labels.*.name) }}

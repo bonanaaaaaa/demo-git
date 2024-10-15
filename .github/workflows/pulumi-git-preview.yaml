@@ -2,17 +2,27 @@ name: Pulumi
 on:
   pull_request:
 
+env:
+  NODE_VERSION: 18
+
 jobs:
   up:
     name: Preview
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: git checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: ./modules/ci/setup-node
+        with:
+          node-version: ${{ env.NODE_VERSION }}
       - uses: pulumi/actions@v6
         with:
           command: preview
-          stack-name: bonanaaaaaa/ps-git
+          stack-name: main
           work-dir: ./modules/pulumi-git
           comment-on-pr: true
+          color: always
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}

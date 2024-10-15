@@ -1,4 +1,3 @@
-import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 import { ComponentResource, ResourceOptions } from "@pulumi/pulumi";
 
@@ -14,6 +13,7 @@ const mainBranchName = "main";
 const devBranchName = "dev";
 
 export class PsGitHubProvider extends ComponentResource {
+  repositoryName: string;
   repository: github.Repository;
 
   devBranch: github.Branch;
@@ -59,6 +59,8 @@ export class PsGitHubProvider extends ComponentResource {
 
     super("PsGitHub", name, args, opts);
 
+    this.repositoryName = repository.name;
+
     this.repository = this.createRepository({
       name: repository.name,
       autoInit: true,
@@ -102,7 +104,7 @@ export class PsGitHubProvider extends ComponentResource {
 
   createBranch({ branchName }: { branchName: string }) {
     return new github.Branch(
-      `${branchName}-branch`,
+      `${this.repositoryName}-${branchName}-branch`,
       {
         repository: this.repository.name,
         branch: branchName,
@@ -113,7 +115,7 @@ export class PsGitHubProvider extends ComponentResource {
 
   createDefaultRepositoryRuleset() {
     return new github.RepositoryRuleset(
-      `${mainBranchName}-repository-ruleset`,
+      `${this.repositoryName}-${mainBranchName}-repository-ruleset`,
       {
         name: mainBranchName,
         repository: this.repository.name,
@@ -151,7 +153,7 @@ export class PsGitHubProvider extends ComponentResource {
     };
 
     return new github.RepositoryRuleset(
-      `${branchName}-repository-ruleset`,
+      `${this.repositoryName}-${branchName}-repository-ruleset`,
       rulesetArgs,
       {
         parent: branch,
