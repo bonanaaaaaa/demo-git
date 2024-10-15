@@ -1,9 +1,11 @@
 config:
-  github:owner: bonanaaaaaa
-  github:token:
-    secure: AAABAHBDM4cGw9EBv+k86Kes6yVIA0zFtbwThx8jFHPy8W/HcAXN6eX729EuooVlLf+TVbxvXCtvmXsrjoqJuH+0nRvn2sbd
-  pulumi:template: github-typescript
   demo:repositoryDescription: A demo repository
   demo:repositoryName: demo-monorepo
   demo2:repositoryDescription: A demo2 repository
   demo2:repositoryName: demo2-monorepo
+  github:owner: bonanaaaaaa
+  github:token:
+    secure: AAABAHBDM4cGw9EBv+k86Kes6yVIA0zFtbwThx8jFHPy8W/HcAXN6eX729EuooVlLf+TVbxvXCtvmXsrjoqJuH+0nRvn2sbd
+  psgit:templateRepoSyncPat:
+    secure: AAABALSLsCe9orjzMXrgSizOv8n3DRYHRh4Mpl5HesG0z4P1s3T5uuBtdNIOQiRI+GgI4PwgQ/p/6LpGj4PwSl/Z9pZpZ1SVoUS5XQ==
+  pulumi:template: github-typescript

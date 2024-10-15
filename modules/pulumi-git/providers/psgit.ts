@@ -1,3 +1,4 @@
+import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 import { ComponentResource, ResourceOptions } from "@pulumi/pulumi";
 
@@ -7,6 +8,7 @@ type GitHubArgs = {
     description: string;
   };
   actionsSecret?: github.ActionsSecretArgs;
+  templateRepoSyncPat: pulumi.Output<string>;
 };
 
 const mainBranchName = "main";
@@ -15,6 +17,9 @@ const devBranchName = "develop";
 export class PsGitHubProvider extends ComponentResource {
   repositoryName: string;
   repository: github.Repository;
+  templateRepoSyncPat: pulumi.Output<string>;
+
+  actionSecrets?: github.ActionsSecret;
 
   devBranch: github.Branch;
 
@@ -55,17 +60,21 @@ export class PsGitHubProvider extends ComponentResource {
   };
 
   constructor(name: string, args: GitHubArgs, opts?: ResourceOptions) {
-    const { repository } = args;
+    const { repository, templateRepoSyncPat } = args;
 
     super("PsGitHub", name, args, opts);
 
     this.repositoryName = repository.name;
+
+    this.templateRepoSyncPat = templateRepoSyncPat;
 
     this.repository = this.createRepository({
       name: repository.name,
       autoInit: true,
       description: repository.description,
     });
+
+    this.actionSecrets = this.addActionSecrets();
 
     this.devBranch = this.createBranch({ branchName: devBranchName });
 
@@ -159,6 +168,18 @@ export class PsGitHubProvider extends ComponentResource {
       {
         parent: branch,
       }
+    );
+  }
+
+  addActionSecrets() {
+    return new github.ActionsSecret(
+      `${this.repositoryName}-actions-secrets`,
+      {
+        repository: this.repository.name,
+        secretName: "TEMPLATE_REPO_SYNC_PAT",
+        plaintextValue: this.templateRepoSyncPat,
+      },
+      { parent: this.repository }
     );
   }
 }
